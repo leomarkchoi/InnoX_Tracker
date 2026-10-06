@@ -1,0 +1,72 @@
+/* Style ພື້ນຖານຂອງ Dropdown Dropdown */
+.status-dropdown {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* ປ່ຽນສີຕາມສະຖານະ (Data Attribute) */
+.status-dropdown[data-status="Pass"] {
+  background-color: #16a34a; /* ສີຂຽວ */
+  color: #ffffff;
+}
+
+.status-dropdown[data-status="Fail"] {
+  background-color: #dc2626; /* ສີແດງ */
+  color: #ffffff;
+}
+
+.status-dropdown[data-status="Blocked"] {
+  background-color: #d97706; /* ສີສົ້ມ */
+  color: #ffffff;
+}
+
+/* CSS ສຳລັບ Dropdown ສະຖານະ (DEV, UAT, PROD) */
+.status-dropdown {
+  appearance: none; /* ເອົາລູກສອນ default ຂອງ Browser ອອກ (Optional) */
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 90px;
+}
+.status-dropdown:focus { outline: none; box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.4); }
+.status-dropdown:disabled { cursor: not-allowed; opacity: 0.5; }
+
+/* Dynamic Colors ສຳລັບ Dropdown ໂດຍອີງໃສ່ data-status */
+.status-dropdown[data-status="Pass"] { background-color: rgba(34, 197, 94, 0.1); color: #4ade80; border-color: rgba(34, 197, 94, 0.3); }
+.status-dropdown[data-status="Fail"] { background-color: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
+.status-dropdown[data-status="Blocked"] { background-color: rgba(249, 115, 22, 0.1); color: #fb923c; border-color: rgba(249, 115, 22, 0.3); }
+.status-dropdown[data-status="In Progress"] { background-color: rgba(59, 130, 246, 0.1); color: #60a5fa; border-color: rgba(59, 130, 246, 0.3); }
+.status-dropdown[data-status="Pending"] { background-color: rgba(107, 114, 128, 0.1); color: #9ca3af; border-color: rgba(107, 114, 128, 0.3); }
+
+/* Custom Dropdown Options Colors */
+.status-dropdown option { background-color: #181b22; color: #e5e7eb; font-weight: normal; }
+
+.status-dropdown[data-status="In Progress"] {
+  background-color: #2563eb; /* ສີຟ້າ */
+  color: #ffffff;
+}
+
+.status-dropdown[data-status="Pending"] {
+  background-color: #4b5563; /* ສີເທົາ */
+  color: #ffffff;
+}
+
+/* Style ສຳລັບ Option ແຕ່ລະໂຕ */
+.status-dropdown option {
+  background-color: #1f2937;
+  color: #ffffff;
+}
