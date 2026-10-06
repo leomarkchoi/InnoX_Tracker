@@ -1,0 +1,34 @@
+# 📊 INNO X - Executive Console & QA Tracker
+
+ລະບົບເວັບແອັບພລິເຄຊັນ (Single Page Application) ສຳລັບການຈັດການໂຄງການ, ຕິດຕາມການທົດສອບລະບົບ (QA Test Tracker) ແລະ ຈັດການຂໍ້ຜິດພາດ (Bug Tracking) ທີ່ອອກແບບມາເພື່ອໃຫ້ໃຊ້ງານງ່າຍ, ຕອບສະໜອງໄວ ແລະ ສາມາດເຊື່ອມຕໍ່ຂໍ້ມູນກັບ Google Sheets ໄດ້.
+
+## 🌟 ຈຸດເດັ່ນຂອງລະບົບ (Key Features)
+
+*   **🔒 ລະບົບເຂົ້າສູ່ລະບົບ (Authentication):** ມີລະບົບ Login ພ້ອມຟັງຊັນ "Remember this device" ເພື່ອຈື່ຈຳການເຂົ້າໃຊ້ ແລະ ລະບົບບັນທຶກປະຫວັດການເຂົ້າໃຊ້ງານ (Audit Logs).
+*   **📈 Interactive Dashboard:** ໜ້າຈໍສະຫຼຸບຜົນການເຮັດວຽກແບບ Real-time, ສະແດງຕົວເລກ KPI ແລະ ກາຟສະຫຼຸບສະຖານະວຽກ (Pass, Fail, Pending).
+*   **📋 Work & Test Tracker:** ຕາຕະລາງຕິດຕາມວຽກທີ່ສາມາດອັບເດດສະຖານະແຍກຕາມສະພາບແວດລ້ອມ (DEV, UAT, PROD) ຜ່ານ Dropdown.
+*   **🐛 Bug Resolution Center:** ໜ້າຈໍສະເພາະສຳລັບຕິດຕາມ ແລະ ຈັດການວຽກທີ່ຕິດສະຖານະ Fail ຫຼື Blocked ທີ່ຕ້ອງໄດ້ຮັບການແກ້ໄຂດ່ວນ.
+*   **📥 Smart Import:** ຮອງຮັບການ Copy ຂໍ້ມູນຈາກຕາຕະລາງ Google Sheets ແລ້ວນຳມາ Paste ລົງໃນລະບົບເພື່ອສ້າງລາຍການວຽກອັດຕະໂນມັດ.
+*   **📤 Export & Print:** ສາມາດ Export ຂໍ້ມູນທັງໝົດອອກມາເປັນໄຟລ໌ Excel (`.csv`) ຫຼື ສັ່ງ Print / Save as PDF ໄດ້ທັນທີ.
+*   **☁️ Google Apps Script Integration:** ຮອງຮັບການເຊື່ອມຕໍ່ Backend ເພື່ອບັນທຶກການປ່ຽນແປງສະຖານະລົງໃນ Google Sheets ໂດຍກົງ.
+
+## 🛠️ ເຕັກໂນໂລຊີທີ່ນຳໃຊ້ (Tech Stack)
+
+*   **Frontend:** HTML5, CSS3
+*   **Framework / Styling:** Tailwind CSS (ຜ່ານ CDN)
+*   **Scripting:** Vanilla JavaScript (ES6+)
+*   **Icons:** Lucide Icons
+*   **Charts:** Chart.js
+*   **Backend / Database:** LocalStorage (ສຳລັບ Offline/Local), Google Apps Script (ສຳລັບ Cloud Sync)
+
+## 📂 ໂຄງສ້າງໄຟລ໌ (Project Structure)
+
+```text
+project-tracker-app/
+├── index.html             # ໄຟລ໌ໜ້າຈໍຫຼັກ (UI) ລວມໂຄງສ້າງ HTML ແລະ Logic ຕ່າງໆ
+├── javascript/
+│   ├── select.js          # (ທາງເລືອກ) ສຳລັບແຍກ JavaScript Logic ຫຼັກ
+│   └── color_system.js    # (ທາງເລືອກ) ຈັດການເລື່ອງສີ ແລະ ການປ່ຽນສະຖານະ
+├── css/
+│   └── style.css          # (ທາງເລືອກ) ໄຟລ໌ສະໄຕລ໌ເພີ່ມເຕີມ
+└── Code.gs                # ໄຟລ໌ສຳລັບ Deploy ເທິງ Google Apps Script (Backend)
