@@ -254,7 +254,7 @@
             <span id="bugCountBadge" class="bg-red-500/20 text-red-400 text-xs px-2 py-0.5 rounded-full font-bold">0</span>
           </button>
           <button onclick="switchTab('import')" id="nav-import" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-gray-400 hover:bg-cardbg hover:text-white">
-            <i data-lucide="file-spreadsheets" class="w-4 h-4"></i> Import Google Sheet
+            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Import Google Sheet
           </button>
           <button onclick="switchTab('export')" id="nav-export" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition text-gray-400 hover:bg-cardbg hover:text-white">
             <i data-lucide="printer" class="w-4 h-4"></i> Export & Print Report
@@ -288,10 +288,10 @@
           <p id="pageSubTitle" class="text-xs text-gray-400 mt-1">Lao Enterprise Infrastructure • Live Offline & Online Sync</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <button onclick="openNewProjectModal()" class="bg-gray-800 hover:bg-gray-700 text-white text-xs px-3 py-2 rounded-lg border border-borderbg flex items-center gap-1.5 font-medium transition">
+          <button onclick="openNewProjectModal()" class="bg-brand-500 hover:bg-brand-600 text-black text-xs px-3.5 py-2 rounded-lg flex items-center gap-1.5 font-bold transition shadow-lg shadow-brand-500/20">
             <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i> + Project ໃໝ່
           </button>
-          <button onclick="switchTab('import')" class="bg-brand-500 hover:bg-brand-600 text-black font-bold text-xs px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition shadow-lg shadow-brand-500/20">
+          <button onclick="switchTab('import')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs px-3 py-2 rounded-lg border border-borderbg flex items-center gap-1.5 font-medium transition">
             <i data-lucide="upload-cloud" class="w-3.5 h-3.5"></i> Paste Google Sheet
           </button>
         </div>
@@ -300,22 +300,26 @@
       <!-- TAB 1: DASHBOARD -->
       <div id="tab-dashboard" class="tab-content space-y-6">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-cardbg border border-borderbg p-4 rounded-xl">
+          <div class="relative bg-cardbg border border-borderbg p-4 rounded-xl">
+            <i data-lucide="list-checks" aria-hidden="true" class="absolute top-4 right-4 w-5 h-5 text-gray-400 opacity-20"></i>
             <span class="text-xs text-gray-400 font-semibold tracking-wider">TOTAL TASKS / CASES</span>
             <div class="text-2xl md:text-3xl font-extrabold text-white mt-2" id="kpiTotal">0</div>
             <span class="text-xs text-gray-500 mt-1 block" id="kpiProjectName">All Selected</span>
           </div>
-          <div class="bg-cardbg border border-borderbg p-4 rounded-xl">
+          <div class="relative bg-cardbg border border-borderbg p-4 rounded-xl">
+            <i data-lucide="circle-check" aria-hidden="true" class="absolute top-4 right-4 w-5 h-5 text-green-400 opacity-20"></i>
             <span class="text-xs text-green-400 font-semibold tracking-wider">PASSED (ສຳເລັດ)</span>
             <div class="text-2xl md:text-3xl font-extrabold text-green-400 mt-2" id="kpiPassed">0</div>
             <span class="text-xs text-green-500/80 mt-1 block" id="kpiPassRate">0% Rate</span>
           </div>
-          <div class="bg-cardbg border border-borderbg p-4 rounded-xl">
+          <div class="relative bg-cardbg border border-borderbg p-4 rounded-xl">
+            <i data-lucide="bug" aria-hidden="true" class="absolute top-4 right-4 w-5 h-5 text-red-400 opacity-20"></i>
             <span class="text-xs text-red-400 font-semibold tracking-wider">FAILED / BUGS</span>
             <div class="text-2xl md:text-3xl font-extrabold text-red-400 mt-2" id="kpiFailed">0</div>
             <span class="text-xs text-red-500/80 mt-1 block">Requires Fix</span>
           </div>
-          <div class="bg-cardbg border border-borderbg p-4 rounded-xl">
+          <div class="relative bg-cardbg border border-borderbg p-4 rounded-xl">
+            <i data-lucide="clock-3" aria-hidden="true" class="absolute top-4 right-4 w-5 h-5 text-yellow-400 opacity-20"></i>
             <span class="text-xs text-yellow-400 font-semibold tracking-wider">PENDING / IN PROGRESS</span>
             <div class="text-2xl md:text-3xl font-extrabold text-yellow-400 mt-2" id="kpiPending">0</div>
             <span class="text-xs text-yellow-500/80 mt-1 block">Ongoing Tasks</span>
@@ -323,15 +327,21 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="bg-cardbg border border-borderbg p-5 rounded-xl lg:col-span-1 flex flex-col justify-between">
+          <div class="bg-cardbg border border-borderbg p-5 rounded-xl lg:col-span-1 flex flex-col items-center">
             <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
               <i data-lucide="pie-chart" class="w-4 h-4 text-brand-500"></i> Status Breakdown
             </h3>
-            <div class="relative w-48 h-48 mx-auto">
-              <canvas id="statusChart"></canvas>
+            <div class="relative w-40 h-40 mx-auto">
+              <canvas id="statusChart" aria-label="Task status breakdown: passed, failed, and pending" role="img"></canvas>
+              <div class="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center">
+                <span class="text-3xl font-extrabold text-white" id="chartPassPercentCenter">0%</span>
+                <span class="text-[10px] text-gray-400">Pass Rate</span>
+              </div>
             </div>
-            <div class="mt-4 pt-4 border-t border-borderbg text-xs space-y-1 text-gray-400">
-              <div class="flex justify-between"><span>Pass Rate:</span> <span class="font-bold text-green-400" id="chartPassPercent">0%</span></div>
+            <div class="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] font-bold" aria-label="Chart legend">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span><span class="text-gray-300">Passed</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-500"></span><span class="text-gray-300">Failed</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span><span class="text-gray-300">Pending</span></div>
             </div>
           </div>
 
@@ -341,12 +351,13 @@
             </h3>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs text-gray-300">
-                <thead class="bg-gray-800/50 text-gray-400 uppercase text-[10px]">
+                <thead class="bg-gray-800/50 text-gray-300 uppercase text-[11px] tracking-wider">
                   <tr>
                     <th class="p-2.5">ID / Code</th>
                     <th class="p-2.5">Module / Detail</th>
                     <th class="p-2.5">Priority</th>
                     <th class="p-2.5">Status</th>
+                    <th class="p-2.5 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody id="blockersTableBody" class="divide-y divide-borderbg"></tbody>
@@ -433,7 +444,7 @@
         <div class="bg-cardbg border border-borderbg p-6 rounded-xl space-y-4">
           <div>
             <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <i data-lucide="file-spreadsheets" class="text-brand-500 w-5 h-5"></i> Smart Import ຈາກ Google Sheets (Copy - Paste)
+              <i data-lucide="file-spreadsheet" class="text-brand-500 w-5 h-5"></i> Smart Import ຈາກ Google Sheets (Copy - Paste)
             </h3>
             <p class="text-xs text-gray-400 mt-1">
               ກັອບປີ້ຕາຕະລາງຈາກ Google Sheet (Ctrl+C) ແລ້ວນຳມາ Paste ໃສ່ກ່ອງລຸ່ມນີ້. ລະບົບຈະຈັດແຍກ Module ແລະ ເອົາເຂົ້າ Project ທີ່ທ່ານເລືອກໂດຍອັດໂນມັດ.
@@ -942,20 +953,22 @@ function saveAuditLog(username, status) {
 
       const projObj = projects.find(p => p.id === currentProjectScope);
       document.getElementById('kpiProjectName').innerText = projObj ? projObj.name : 'All Projects';
-      document.getElementById('chartPassPercent').innerText = `${passRate}%`;
+      document.getElementById('chartPassPercentCenter').innerText = `${passRate}%`;
 
       const blockersBody = document.getElementById('blockersTableBody');
       const blockers = filtered.filter(t => (t.devStatus || t.result) === 'Fail');
       blockersBody.innerHTML = blockers.length === 0 
-        ? `<tr><td colspan="4" class="p-4 text-center text-gray-500">ບໍ່ມີລາຍການແກ້ໄຂ / ບໍ່ມີ Bug</td></tr>`
+        ? `<tr><td colspan="5" class="p-4 text-center text-gray-500">ບໍ່ມີລາຍການແກ້ໄຂ / ບໍ່ມີ Bug</td></tr>`
         : blockers.map(b => `
-          <tr class="hover:bg-gray-800/40">
+          <tr class="group cursor-pointer transition-colors hover:bg-gray-700/50 focus:bg-gray-700/50 focus:outline-none" tabindex="0" onclick="editTask('${b.id}')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); editTask('${b.id}'); }" title="Click to view or edit this task">
             <td class="p-2.5 font-mono text-brand-500">${b.caseCode}</td>
             <td class="p-2.5"><div class="font-bold text-white">${b.title}</div><div class="text-[10px] text-gray-500">${b.module}</div></td>
             <td class="p-2.5"><span class="bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded text-[10px] font-bold">${b.priority}</span></td>
             <td class="p-2.5"><span class="bg-red-500 text-black px-2 py-0.5 rounded font-bold text-[10px]">Fail</span></td>
+            <td class="p-2.5 text-right"><i data-lucide="chevron-right" aria-hidden="true" class="inline-block w-4 h-4 text-gray-500 transition group-hover:text-white"></i></td>
           </tr>
         `).join('');
+      lucide.createIcons();
 
       const ctx = document.getElementById('statusChart').getContext('2d');
       if(chartInstance) chartInstance.destroy();
@@ -969,7 +982,7 @@ function saveAuditLog(username, status) {
             borderWidth: 0
           }]
         },
-        options: { cutout: '75%', plugins: { legend: { display: false } }, responsive: true, maintainAspectRatio: false }
+        options: { cutout: '80%', plugins: { legend: { display: false } }, responsive: true, maintainAspectRatio: false }
       });
     }
 
