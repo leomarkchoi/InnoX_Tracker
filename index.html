@@ -215,13 +215,15 @@
         <div class="w-8 h-8 rounded bg-brand-500 text-black font-bold flex items-center justify-center">LBB</div>
         <span class="font-bold text-white text-lg">Work Tracker</span>
       </div>
-      <button onclick="toggleMobileMenu()" class="p-2 text-gray-400 hover:text-white">
+      <button id="mobileMenuToggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-controls="sidebar" aria-expanded="false" class="p-2 text-gray-400 hover:text-white">
         <i data-lucide="menu"></i>
       </button>
     </div>
 
+    <button id="mobileMenuBackdrop" onclick="closeMobileMenu()" aria-label="Close navigation menu" tabindex="-1" class="hidden fixed inset-0 bg-black/60 z-30 md:hidden"></button>
+
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="no-print hidden md:flex flex-col w-full md:w-64 bg-sidebar border-r border-borderbg min-h-screen p-4 justify-between z-40">
+    <aside id="sidebar" class="no-print fixed bottom-0 left-0 top-16 z-40 flex h-auto min-h-[calc(100vh-4rem)] w-64 shrink-0 -translate-x-full flex-col justify-between border-r border-borderbg bg-sidebar p-4 transition-transform duration-300 ease-in-out md:relative md:inset-auto md:h-auto md:min-h-screen md:translate-x-0">
       <div>
         <div class="flex items-center gap-3 px-2 py-3 mb-6">
           <div class="w-9 h-9 rounded-lg bg-brand-500 text-black font-extrabold flex items-center justify-center text-xl shadow-lg shadow-brand-500/20">X</div>
@@ -299,7 +301,7 @@
 
       <!-- TAB 1: DASHBOARD -->
       <div id="tab-dashboard" class="tab-content space-y-6">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div class="relative bg-cardbg border border-borderbg p-4 rounded-xl">
             <i data-lucide="list-checks" aria-hidden="true" class="absolute top-4 right-4 w-5 h-5 text-gray-400 opacity-20"></i>
             <span class="text-xs text-gray-400 font-semibold tracking-wider">TOTAL TASKS / CASES</span>
@@ -349,8 +351,8 @@
             <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2 text-red-400">
               <i data-lucide="alert-triangle" class="w-4 h-4"></i> Failures & Blockers (ລາຍການວຽກທີ່ຕ້ອງແກ້ໄຂ)
             </h3>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs text-gray-300">
+            <div class="w-full overflow-x-auto">
+              <table class="w-full min-w-[640px] text-left text-xs text-gray-300">
                 <thead class="bg-gray-800/50 text-gray-300 uppercase text-[11px] tracking-wider">
                   <tr>
                     <th class="p-2.5">ID / Code</th>
@@ -369,13 +371,13 @@
 
       <!-- TAB 2: WORK & TEST TRACKER TABLE -->
       <div id="tab-tracker" class="tab-content space-y-4 hidden">
-        <div class="no-print bg-cardbg border border-borderbg p-4 rounded-xl flex flex-col md:flex-row gap-3 justify-between items-center">
-          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+        <div class="no-print bg-cardbg border border-borderbg p-4 rounded-xl flex flex-col md:flex-row gap-3 justify-between items-stretch md:items-center">
+          <div class="flex flex-col md:flex-row flex-wrap items-stretch md:items-center gap-2 w-full md:w-auto">
             <input type="text" id="searchInput" oninput="renderTrackerTable()" placeholder="ຄົ້ນຫາ ID, Title, Module, Steps..." class="bg-darkbg border border-borderbg text-xs text-white p-2.5 rounded-lg w-full md:w-64 focus:outline-none focus:border-brand-500">
-            <select id="moduleFilter" onchange="renderTrackerTable()" class="bg-darkbg border border-borderbg text-xs text-white p-2.5 rounded-lg focus:outline-none">
+            <select id="moduleFilter" onchange="renderTrackerTable()" class="w-full md:w-auto bg-darkbg border border-borderbg text-xs text-white p-2.5 rounded-lg focus:outline-none">
               <option value="ALL">All Modules (ທຸກ Module)</option>
             </select>
-            <select id="statusFilter" onchange="renderTrackerTable()" class="bg-darkbg border border-borderbg text-xs text-white p-2.5 rounded-lg focus:outline-none">
+            <select id="statusFilter" onchange="renderTrackerTable()" class="w-full md:w-auto bg-darkbg border border-borderbg text-xs text-white p-2.5 rounded-lg focus:outline-none">
               <option value="ALL">All Statuses (ທຸກສະຖານະ)</option>
               <option value="Pass">Pass</option>
               <option value="Fail">Fail</option>
@@ -388,8 +390,8 @@
         </div>
 
         <div class="bg-cardbg border border-borderbg rounded-xl overflow-hidden shadow-xl">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-gray-200">
+          <div class="w-full overflow-x-auto">
+            <table class="w-full min-w-[900px] text-left text-xs text-gray-200">
               <thead class="bg-gray-900/80 text-gray-400 font-semibold uppercase tracking-wider text-[11px] border-b border-borderbg">
                 <tr>
                   <th class="p-3.5">Project / Code</th>
@@ -421,8 +423,8 @@
           </div>
         </div>
         <div class="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs text-gray-200">
+          <div class="w-full overflow-x-auto">
+            <table class="w-full min-w-[760px] text-left text-xs text-gray-200">
               <thead class="bg-gray-900/80 text-gray-400 uppercase text-[11px] border-b border-borderbg">
                 <tr>
                   <th class="p-3.5">Code ID</th>
@@ -790,10 +792,22 @@ function saveAuditLog(username, status) {
     }
 
     function toggleMobileMenu() {
-      document.getElementById('sidebar').classList.toggle('hidden');
+      const sidebar = document.getElementById('sidebar');
+      const isOpen = sidebar.classList.toggle('-translate-x-full') === false;
+      document.getElementById('mobileMenuBackdrop').classList.toggle('hidden', !isOpen);
+      document.getElementById('mobileMenuToggle').setAttribute('aria-expanded', String(isOpen));
+      document.getElementById('mobileMenuToggle').setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('sidebar').classList.add('-translate-x-full');
+      document.getElementById('mobileMenuBackdrop').classList.add('hidden');
+      document.getElementById('mobileMenuToggle').setAttribute('aria-expanded', 'false');
+      document.getElementById('mobileMenuToggle').setAttribute('aria-label', 'Open navigation menu');
     }
 
     function switchTab(tabId) {
+      closeMobileMenu();
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.nav-btn').forEach(el => {
         el.classList.remove('bg-cardbg', 'text-brand-500');
